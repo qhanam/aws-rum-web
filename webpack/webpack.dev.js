@@ -22,6 +22,7 @@ module.exports = merge(common, {
             './src/loader/loader-pre-load-command-queue-test.js',
         loader_post_load_command_queue_test:
             './src/loader/loader-post-load-command-queue-test.js',
+        loader_npm: './src/loader/loader-npm.ts',
         loader_remote_config: './src/loader/loader-remote-config.js'
     },
     resolve: {
