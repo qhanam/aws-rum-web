@@ -50,6 +50,7 @@ describe('ResourcePlugin tests', () => {
         );
         expect(record.mock.calls[0][1]).toEqual(
             expect.objectContaining({
+                startTime: resourceEvent.startTime,
                 fileType: resourceEvent.fileType,
                 duration: resourceEvent.duration,
                 transferSize: resourceEvent.transferSize,

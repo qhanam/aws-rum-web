@@ -7,6 +7,21 @@ export enum ResourceType {
     FONT = 'font'
 }
 
+/**
+ * A PerformanceEntry or RumEvent that is sourced from the PerformanceAPI
+ */
+export interface HasLatency {
+    startTime: DOMHighResTimeStamp;
+    duration: DOMHighResTimeStamp;
+}
+
+/**
+ * Creates key to link a RumEvent to the PerformanceEntry that it is sourced from
+ * e.g. performanceKey(ResourceEvent) === performanceKey(PerformanceResourceTiming)
+ */
+export const performanceKey = (details: HasLatency) =>
+    [details.startTime, details.duration].join('#');
+
 const extensions = [
     {
         name: ResourceType.STYLESHEET,
@@ -111,3 +126,14 @@ export const httpStatusText = {
     '504': 'Gateway Timeout',
     '505': 'HTTP Version Not Supported'
 };
+
+export interface RumLCPAttribution {
+    element?: string;
+    url?: string;
+    timeToFirstByte: number;
+    resourceLoadDelay: number;
+    resourceLoadTime: number;
+    elementRenderDelay: number;
+    lcpResourceEntry?: string;
+    navigationEntry?: string;
+}
